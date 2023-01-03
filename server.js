@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const userRoutes = require('./src/routes/userRoutes');
 
 dotenv.config();
 
@@ -13,6 +14,11 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('SkillShareHub API is running');
 });
+
+/******* Routes ******/
+app.use('/api/users', userRoutes);
+
+
 
 const PORT = process.env.PORT || 5000;
 
