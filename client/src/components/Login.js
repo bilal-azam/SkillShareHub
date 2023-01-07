@@ -12,9 +12,10 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await axios.post('/api/users/login', formData);
-      console.log(res.data);
+      localStorage.setItem('token', res.data.token);
+      console.log('Logged in successfully');
     } catch (err) {
-      console.error(err.response.data);
+      console.error('Invalid credentials');
     }
   };
 
