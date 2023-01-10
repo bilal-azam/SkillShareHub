@@ -77,3 +77,39 @@ exports.updateUserProfile = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+// Add a new skill
+exports.addSkill = async (req, res) => {
+  const { name, level } = req.body;
+
+  try {
+    const user = await User.findById(req.user);
+    if (user) {
+      user.skills.push({ name, level });
+      await user.save();
+      res.json(user.skills);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// Remove a skill
+exports.removeSkill = async (req, res) => {
+  const { skillId } = req.params;
+
+  try {
+    const user = await User.findById(req.user);
+    if (user) {
+      user.skills = user.skills.filter(skill => skill._id.toString() !== skillId);
+      await user.save();
+      res.json(user.skills);
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};

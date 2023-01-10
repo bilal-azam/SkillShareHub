@@ -3,7 +3,9 @@ const {
   registerUser, 
   loginUser,
   getUserProfile, 
-  updateUserProfile 
+  updateUserProfile,
+  addSkill,
+  removeSkill
 } = require('../controllers/userController');
 const auth = require('../middleware/authMiddleware');
 
@@ -13,6 +15,8 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.get('/profile', auth, getUserProfile);
 router.put('/profile', auth, updateUserProfile);
+router.post('/skills', auth, addSkill);
+router.delete('/skills/:skillId', auth, removeSkill);
 
 router.get('/', (req, res) => {
   res.send('User route is working');

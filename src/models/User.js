@@ -5,7 +5,10 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   bio: { type: String },
-  skills: [{ type: String }],
+  skills: [{
+    name: String,
+    level: { type: String, enum: ['Beginner', 'Intermediate', 'Advanced'] }
+  }],
   date: { type: Date, default: Date.now }
 });
 
