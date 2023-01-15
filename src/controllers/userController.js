@@ -113,3 +113,18 @@ exports.removeSkill = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+// Search users by skill
+exports.searchUsers = async (req, res) => {
+  const { skill } = req.query;
+
+  try {
+    const users = await User.find({
+      skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } }
+    }).select('-password');
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
