@@ -123,7 +123,17 @@ exports.searchUsers = async (req, res) => {
       skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } }
     }).select('-password');
 
-    res.json(users);
+    const matchedUsers = users.map(user => {
+      const matchingSkill = user.skills.find(s => s.name.toLowerCase().includes(skill.toLowerCase()));
+      return {
+        user,
+        matchStrength: matchingSkill ? matchingSkill.level : 'N/A'
+      };
+    });
+
+    matchedUsers.sort((a, b) => a.matchStrength.localeCompare(b.matchStrength));
+
+    res.json(matchedUsers);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
