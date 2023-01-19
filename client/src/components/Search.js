@@ -23,10 +23,18 @@ const Search = () => {
       <input type="text" value={query} onChange={onChange} placeholder="Search for a skill..." />
       <button onClick={onSearch}>Search</button>
 
+      <div>
+        <label>Sort by:</label>
+        <select>
+          <option value="matchStrength">Match Strength</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+
       <ul>
         {results.map(result => (
           <li key={result.user._id}>
-            {result.user.name} - {result.user.skills.map(skill => skill.name).join(', ')}
+            {result.user.name} - Skills: {result.user.skills.map(skill => skill.name).join(', ')} (Match: {result.matchStrength})
           </li>
         ))}
       </ul>
