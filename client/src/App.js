@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './components/Profile';
 import Search from './components/Search';
+import SkillExchange from './components/SkillExchange';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/search" component={Search} />
+        <PrivateRoute path="/skill-exchange" component={SkillExchange} />
       </Switch>
     </Router>
   );
