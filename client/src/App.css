@@ -36,3 +36,107 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  color: #072635;
+}
+
+.card img {
+  margin-bottom: 20px;
+}
+
+.card h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.card p {
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.card span {
+  display: block;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.card-1 {
+  background: #E0F3FA;
+}
+
+.card-2 {
+  background: #FFE6E9;
+}
+
+.card-3 {
+  background: #FFE6F1;
+}
+
+.diagnostic-list {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  height: 14rem;
+}
+
+.diagnostic-list h3 {
+  color: #072635;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.diagnostic-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.diagnostic-list table thead tr{
+  display: block;
+}
+
+.diagnostic-list th, .diagnostic-list td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.diagnostic-list th {
+  background-color: #F6F7F8;
+  font-weight: 500;
+  border-bottom: 0;
+  width: 1%;
+}
+
+.diagnostic-list tr {
+  display: block;
+  width: 100%;
+}
+
+.diagnostic-list td {
+  width: 1%;
+}
+
+.diagnostic-list th:first-child {
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
+}
+
+.diagnostic-list th:last-child {
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+.diagnostic-table-list {
+  display: block;
+  height: 8.3rem;
+  overflow: auto;
+}

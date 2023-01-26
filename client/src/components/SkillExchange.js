@@ -34,9 +34,9 @@ const SkillExchange = () => {
     }
   };
 
-  const onUpdate = async (id, status) => {
+  const onUpdate = async (id, status, date) => {
     try {
-      const res = await axios.put(`/api/skill-exchange/${id}`, { status }, {
+      const res = await axios.put(`/api/skill-exchange/${id}`, { status, scheduledDate: date }, {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       setRequests(requests.map(req => (req._id === id ? res.data : req)));
