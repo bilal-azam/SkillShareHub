@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Profile from './components/Profile';
 import Search from './components/Search';
 import SkillExchange from './components/SkillExchange';
+import Notifications from './components/Notifications';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/search" component={Search} />
         <PrivateRoute path="/skill-exchange" component={SkillExchange} />
+        <PrivateRoute path="/notifications" component={Notifications} />
       </Switch>
     </Router>
   );
