@@ -7,6 +7,7 @@ SkillShareHub is a web application built on the MERN stack (MongoDB, Express, Re
 3. Skill Management: Add, update, or remove skills with associated proficiency levels (Beginner, Intermediate, Advanced).
 4. Search and Matching: Find users based on skills they want to share or learn, with an integrated matching algorithm that ranks users based on skill compatibility.
 5. Responsive UI: User-friendly interface designed with React, ensuring a seamless experience across devices.
+6. Notification System: Dynamic notifications
 
 ## Installation
 To get started with SkillShareHub, follow these steps:
