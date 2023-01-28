@@ -7,7 +7,8 @@ SkillShareHub is a web application built on the MERN stack (MongoDB, Express, Re
 3. Skill Management: Add, update, or remove skills with associated proficiency levels (Beginner, Intermediate, Advanced).
 4. Search and Matching: Find users based on skills they want to share or learn, with an integrated matching algorithm that ranks users based on skill compatibility.
 5. Responsive UI: User-friendly interface designed with React, ensuring a seamless experience across devices.
-6. Notification System: Dynamic notifications
+6. Skill Exchange System: Request and schedule skill-sharing sessions with other users, complete with a status management system.
+7. Notification System: Receive dynamic notifications for new skill exchange requests, updates, and other important events.
 
 ## Installation
 To get started with SkillShareHub, follow these steps:
@@ -55,6 +56,14 @@ DELETE /api/users/skills/:skillId - Remove a skill from the user's profile.
 ### Search and Matching
 GET /api/users/search?skill=<skill> - Search for users by skill.
 
+### Skill Exchange System
+POST /api/skill-exchange - Create a new skill exchange request.
+PUT /api/skill-exchange/:id - Update a skill exchange request status or scheduled date.
+GET /api/skill-exchange - Get all skill exchange requests for the logged-in user.
+### Notification System
+GET /api/notifications - Get all notifications for the logged-in user.
+PUT /api/notifications/:id/read - Mark a notification as read.
+
 ## Frontend Overview
 
 ### Pages
@@ -63,6 +72,8 @@ GET /api/users/search?skill=<skill> - Search for users by skill.
 2. Register/Login: User authentication pages.
 3. Profile: User profile management, including bio and skill management.
 4. Search: Search for other users based on skills, view match strength.
+5. Skill Exchange: Request, manage, and track skill exchange sessions with other users.
+6. Notifications: View and manage notifications related to skill exchanges and other events.
 
 ### Components
 
@@ -70,6 +81,8 @@ GET /api/users/search?skill=<skill> - Search for users by skill.
 2. ProfileForm: Form for managing user profile information.
 3. SkillList: List of skills with add and remove functionality.
 4. SearchResults: Display of users matching the search query.
+5. SkillExchangeForm: Form for creating and managing skill exchange requests.
+6. Notifications: Display and manage user notifications.
 
 ## Matching Algorithm
 The matching algorithm ranks users based on the relevance of their skills to the search query. Users with skills that closely match the query and have a higher proficiency level are ranked higher.
