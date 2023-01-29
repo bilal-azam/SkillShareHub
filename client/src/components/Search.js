@@ -3,13 +3,25 @@ import axios from 'axios';
 
 const Search = () => {
   const [query, setQuery] = useState('');
+  const [location, setLocation] = useState('');
+  const [proficiency, setProficiency] = useState('');
+  const [availability, setAvailability] = useState('');
   const [results, setResults] = useState([]);
 
-  const onChange = e => setQuery(e.target.value);
+  const onChange = (e) => setQuery(e.target.value);
+  const onLocationChange = (e) => setLocation(e.target.value);
+  const onProficiencyChange = (e) => setProficiency(e.target.value);
+  const onAvailabilityChange = (e) => setAvailability(e.target.value);
 
   const onSearch = async () => {
     try {
-      const res = await axios.get(`/api/users/search?skill=${query}`, {
+      const res = await axios.get('/api/users/search', {
+        params: {
+          skill: query,
+          location,
+          proficiency,
+          availability,
+        },
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       setResults(res.data);
@@ -21,6 +33,14 @@ const Search = () => {
   return (
     <div>
       <input type="text" value={query} onChange={onChange} placeholder="Search for a skill..." />
+      <input type="text" value={location} onChange={onLocationChange} placeholder="Location..." />
+      <select value={proficiency} onChange={onProficiencyChange}>
+        <option value="">Select Proficiency</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+      <input type="text" value={availability} onChange={onAvailabilityChange} placeholder="Availability..." />
       <button onClick={onSearch}>Search</button>
 
       <div>

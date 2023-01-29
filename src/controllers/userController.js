@@ -114,15 +114,23 @@ exports.removeSkill = async (req, res) => {
   }
 };
 
-// Search users by skill
+// Search users by skill, location, proficiency, and availability
 exports.searchUsers = async (req, res) => {
-  const { skill } = req.query;
+  const { skill, location, proficiency, availability } = req.query;
 
   try {
-    const users = await User.find({
-      skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } }
-    }).select('-password');
+    // Construct the query object dynamically based on the filters provided
+    const query = {
+      skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } },
+      ...(location && { location: { $regex: location, $options: 'i' } }),
+      ...(proficiency && { skills: { $elemMatch: { level: proficiency } } }),
+      ...(availability && { availability: { $regex: availability, $options: 'i' } })
+    };
 
+    // Find users matching the query
+    const users = await User.find(query).select('-password');
+
+    // Calculate match strength
     const matchedUsers = users.map(user => {
       const matchingSkill = user.skills.find(s => s.name.toLowerCase().includes(skill.toLowerCase()));
       return {
@@ -131,6 +139,7 @@ exports.searchUsers = async (req, res) => {
       };
     });
 
+    // Sort the results by match strength
     matchedUsers.sort((a, b) => a.matchStrength.localeCompare(b.matchStrength));
 
     res.json(matchedUsers);
@@ -138,3 +147,4 @@ exports.searchUsers = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
