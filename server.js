@@ -3,6 +3,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./src/routes/userRoutes');
+const skillExchangeRoutes = require('./src/routes/skillExchangeRoutes');
+const notificationRoutes = require('./src/routes/notificationRoutes');
+const ratingRoutes = require('./routes/ratingRoutes');
 
 dotenv.config();
 
@@ -17,6 +20,9 @@ app.get('/', (req, res) => {
 
 /******* Routes ******/
 app.use('/api/users', userRoutes);
+app.use('/api/skill-exchanges', skillExchangeRoutes);
+app.use('/api/notifications', notificationRoutes);
+app.use('/api/ratings', ratingRoutes);
 
 
 
