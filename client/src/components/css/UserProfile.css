@@ -1,0 +1,19 @@
+/* client/src/components/UserProfile.css */
+
+.rating-form {
+    margin-top: 20px;
+}
+
+.rating-form select,
+.rating-form textarea {
+    margin: 10px 0;
+}
+
+.rating-item {
+    margin: 10px 0;
+}
+
+.rating-item p {
+    font-style: italic;
+    color: gray;
+}

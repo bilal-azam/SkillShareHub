@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RatingForm from './RatingForm';
+import './css/UserProfile.css';
 
 const UserProfile = ({ match }) => {
     const [user, setUser] = useState({});
