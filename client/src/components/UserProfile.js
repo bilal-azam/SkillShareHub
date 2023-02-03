@@ -1,34 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import useFetch from '../hooks/useFetch';
 import RatingForm from './RatingForm';
-import './css/UserProfile.css';
+import RatingItem from './RatingItem';
+import './UserProfile.css';
 
 const UserProfile = ({ match }) => {
-    const [user, setUser] = useState({});
-    const [ratings, setRatings] = useState([]);
+    const { data: user, loading: userLoading, error: userError } = useFetch(`/api/users/${match.params.id}`);
+    const { data: ratings, loading: ratingsLoading, error: ratingsError } = useFetch(`/api/ratings/${match.params.id}`);
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const res = await axios.get(`/api/users/${match.params.id}`);
-                setUser(res.data);
-            } catch (err) {
-                console.error(err.response.data.message);
-            }
-        };
-
-        const fetchRatings = async () => {
-            try {
-                const res = await axios.get(`/api/ratings/${match.params.id}`);
-                setRatings(res.data);
-            } catch (err) {
-                console.error(err.response.data.message);
-            }
-        };
-
-        fetchUser();
-        fetchRatings();
-    }, [match.params.id]);
+    if (userLoading || ratingsLoading) return <p>Loading...</p>;
+    if (userError) return <p>{userError}</p>;
+    if (ratingsError) return <p>{ratingsError}</p>;
 
     return (
         <div>
@@ -44,10 +26,7 @@ const UserProfile = ({ match }) => {
             <h3>Ratings:</h3>
             <ul>
                 {ratings.map(rating => (
-                    <li key={rating._id}>
-                        {rating.ratingUser.name}: {rating.ratingValue} stars
-                        <p>{rating.comment}</p>
-                    </li>
+                    <RatingItem key={rating._id} rating={rating} />
                 ))}
             </ul>
 

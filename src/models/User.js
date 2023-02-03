@@ -12,4 +12,6 @@ const userSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
+UserSchema.index({ 'skills.name': 1 });
+
 module.exports = mongoose.model('User', userSchema);
