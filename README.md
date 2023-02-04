@@ -6,9 +6,16 @@ SkillShareHub is a web application built on the MERN stack (MongoDB, Express, Re
 2. User Profiles: Create and manage your personal profile, including your bio and a list of skills you can teach or want to learn.
 3. Skill Management: Add, update, or remove skills with associated proficiency levels (Beginner, Intermediate, Advanced).
 4. Search and Matching: Find users based on skills they want to share or learn, with an integrated matching algorithm that ranks users based on skill compatibility.
-5. Responsive UI: User-friendly interface designed with React, ensuring a seamless experience across devices.
-6. Skill Exchange System: Request and schedule skill-sharing sessions with other users, complete with a status management system.
-7. Notification System: Receive dynamic notifications for new skill exchange requests, updates, and other important events.
+5. User Rating System: Submit and view ratings on user profiles, helping to establish credibility and trust within the community.
+6. Responsive UI: User-friendly interface designed with React, ensuring a seamless experience across devices.
+7. Skill Exchange System: Request and schedule skill-sharing sessions with other users, complete with a status management system.
+8. Notification System: Receive dynamic notifications for new skill exchange requests, updates, and other important events.
+
+### User Rating System
+SkillShareHub allows users to rate each other based on their learning or teaching experiences. Ratings include a value between 1 and 5 stars, along with an optional comment. Users can view all ratings they have received on their profile page.
+
+- **Submit Rating:** Navigate to a user's profile page to submit a rating.
+- **View Ratings:** All ratings for a user are displayed on their profile page, along with the rating value and any comments.
 
 ## Installation
 To get started with SkillShareHub, follow these steps:
@@ -60,9 +67,14 @@ GET /api/users/search?skill=<skill> - Search for users by skill.
 POST /api/skill-exchange - Create a new skill exchange request.
 PUT /api/skill-exchange/:id - Update a skill exchange request status or scheduled date.
 GET /api/skill-exchange - Get all skill exchange requests for the logged-in user.
+
 ### Notification System
 GET /api/notifications - Get all notifications for the logged-in user.
 PUT /api/notifications/:id/read - Mark a notification as read.
+
+### Rating System
+POST /api/ratings/:userId - Submit a rating for a user.
+GET /api/ratings/:userId - Retrieve all ratings for a user.
 
 ## Frontend Overview
 
@@ -74,6 +86,7 @@ PUT /api/notifications/:id/read - Mark a notification as read.
 4. Search: Search for other users based on skills, view match strength.
 5. Skill Exchange: Request, manage, and track skill exchange sessions with other users.
 6. Notifications: View and manage notifications related to skill exchanges and other events.
+7. User Profile with Ratings: View another user's profile, including their skills and ratings, and submit a new rating.
 
 ### Components
 
@@ -83,6 +96,9 @@ PUT /api/notifications/:id/read - Mark a notification as read.
 4. SearchResults: Display of users matching the search query.
 5. SkillExchangeForm: Form for creating and managing skill exchange requests.
 6. Notifications: Display and manage user notifications.
+7. RatingForm: Form for submitting a new rating for a user.
+8. RatingItem: Display individual rating items on a user's profile.
+9. RatingList: A list component to display all ratings for a user, encapsulating multiple RatingItem components.
 
 ## Matching Algorithm
 The matching algorithm ranks users based on the relevance of their skills to the search query. Users with skills that closely match the query and have a higher proficiency level are ranked higher.
