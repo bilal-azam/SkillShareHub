@@ -7,6 +7,7 @@ const skillExchangeRoutes = require('./src/routes/skillExchangeRoutes');
 const notificationRoutes = require('./src/routes/notificationRoutes');
 const ratingRoutes = require('./routes/ratingRoutes');
 const messageRoutes = require('./routes/messageRoutes');
+const notificationAlertRoutes = require('./routes/notificationAlertRoutes');
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use('/api/skill-exchanges', skillExchangeRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/ratings', ratingRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/notification-alerts', notificationAlertRoutes);
 
 
 
