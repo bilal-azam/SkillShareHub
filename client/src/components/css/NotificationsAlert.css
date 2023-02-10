@@ -1,0 +1,49 @@
+.notifications {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    top: 60px;
+    width: 300px;
+    z-index: 1000;
+}
+
+.notifications h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.notifications ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notifications li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.notifications li.unread {
+    font-weight: bold;
+}
+
+.notifications li.read {
+    color: #aaa;
+}
+
+.notifications button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.notifications button:hover {
+    text-decoration: underline;
+}

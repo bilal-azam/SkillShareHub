@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './css/NotificationsAlert.css';
+
 
 const NotificationAlerts = () => {
     const [notifications, setNotifications] = useState([]);
