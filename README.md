@@ -103,6 +103,26 @@ GET /api/ratings/:userId - Retrieve all ratings for a user.
 ## Matching Algorithm
 The matching algorithm ranks users based on the relevance of their skills to the search query. Users with skills that closely match the query and have a higher proficiency level are ranked higher.
 
+## Deployment
+
+To deploy SkillShareHub to a production environment, follow these steps:
+
+1. Ensure all environment variables are set in a `.env` file in the `server` directory:
+   ```env
+   `MONGO_URI=<your-production-mongodb-uri>
+   JWT_SECRET=<your-production-jwt-secret>
+   NODE_ENV=production
+   PORT=5000`
+2. Create a production build of the client:
+    `cd client
+    npm run build`
+3. Start the server:
+    `cd ../server
+    npm start`
+4. Optionally, deploy the application using a platform like Heroku, Vercel, or AWS.
+5. Test Production Build Locally:
+    `npx serve -s build`
+
 ## Contributing
 Contributions are welcome! To contribute:
 
