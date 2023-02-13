@@ -15,6 +15,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ success: false, message: 'Server error. Please try again later.' });
+});
+
 // Basic route for testing
 app.get('/', (req, res) => {
   res.send('SkillShareHub API is running');
