@@ -100,6 +100,14 @@ GET /api/ratings/:userId - Retrieve all ratings for a user.
 8. RatingItem: Display individual rating items on a user's profile.
 9. RatingList: A list component to display all ratings for a user, encapsulating multiple RatingItem components.
 
+## Error Handling
+
+### Server-Side
+All server routes are wrapped with `try-catch` blocks to handle any potential errors. If an unhandled exception occurs, it is caught by the global error handler, which logs the error and sends a generic error message to the client.
+
+### Client-Side
+On the client side, all API calls are wrapped in `try-catch` blocks to capture and handle errors. The application uses `react-toastify` to provide users with feedback, displaying success messages when operations are completed successfully and error messages when they fail.
+
 ## Matching Algorithm
 The matching algorithm ranks users based on the relevance of their skills to the search query. Users with skills that closely match the query and have a higher proficiency level are ranked higher.
 

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const Search = () => {
   const [query, setQuery] = useState('');
@@ -25,7 +29,9 @@ const Search = () => {
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });
       setResults(res.data);
+      toast.success('Search completed successfully!');
     } catch (err) {
+      toast.error('Failed to perform search. Please try again.');
       console.error(err.response.data);
     }
   };
