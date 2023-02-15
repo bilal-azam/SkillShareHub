@@ -1,28 +1,34 @@
+// Register.js
+
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
-  const { name, email, password } = formData;
+  const { name, email, password, confirmPassword } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('/api/users/register', formData);
-      console.log(res.data);
-    } catch (err) {
-      console.error(err.response.data);
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+    } else {
+      // Proceed with registration
     }
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <input type="text" name="name" value={name} onChange={onChange} placeholder="Name" required />
-      <input type="email" name="email" value={email} onChange={onChange} placeholder="Email" required />
-      <input type="password" name="password" value={password} onChange={onChange} placeholder="Password" required />
+      <input type="text" name="name" value={name} onChange={onChange} required placeholder="Name" />
+      <input type="email" name="email" value={email} onChange={onChange} required placeholder="Email" />
+      <input type="password" name="password" value={password} onChange={onChange} required placeholder="Password" />
+      <input type="password" name="confirmPassword" value={confirmPassword} onChange={onChange} required placeholder="Confirm Password" />
       <button type="submit">Register</button>
     </form>
   );

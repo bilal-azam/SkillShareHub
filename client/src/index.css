@@ -594,3 +594,22 @@ code {
 .footer {
     height: 180px;
 }
+
+/* styles.css */
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  
