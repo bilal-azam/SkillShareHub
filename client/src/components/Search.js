@@ -1,3 +1,8 @@
+/**
+ * Handle search functionality for users based on skills.
+ * Uses debounce to limit the number of API calls.
+ */
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';

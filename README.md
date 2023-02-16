@@ -141,3 +141,37 @@ Contributions are welcome! To contribute:
 5. Push to the branch (git push origin feature-branch).
 6. Create a pull request.
 
+## API Documentation
+
+### GET /api/users/search
+- **Description:** Search users by skill.
+- **Query Parameters:**
+  - `skill` (string): The skill to search for.
+  - `page` (integer): The page number for pagination (default: 1).
+  - `limit` (integer): The number of results per page (default: 10).
+- **Response:**
+  ```json
+  {
+    "users": [...],
+    "totalPages": 5,
+    "currentPage": 1
+  }
+
+  ## Developer Guide
+
+### Project Structure
+- **/client**: React frontend application.
+- **/server**: Node.js backend application.
+
+### Getting Started
+- Clone the repository.
+- Run `npm install` in both `client` and `server` directories.
+- Create a `.env` file in the `server` directory with the necessary environment variables.
+
+### Running the Application
+- To start the backend: `npm run server`.
+- To start the frontend: `npm start` in the `client` directory.
+
+### Deployment
+- Ensure all environment variables are set in the production environment.
+- Use a service like Heroku, AWS, or DigitalOcean for deployment.
