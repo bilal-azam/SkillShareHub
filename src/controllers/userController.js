@@ -116,33 +116,24 @@ exports.removeSkill = async (req, res) => {
 
 // Search users by skill, location, proficiency, and availability
 exports.searchUsers = async (req, res) => {
-  const { skill, location, proficiency, availability } = req.query;
-
+  const { skill, page = 1, limit = 10 } = req.query;
   try {
-    // Construct the query object dynamically based on the filters provided
-    const query = {
-      skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } },
-      ...(location && { location: { $regex: location, $options: 'i' } }),
-      ...(proficiency && { skills: { $elemMatch: { level: proficiency } } }),
-      ...(availability && { availability: { $regex: availability, $options: 'i' } })
-    };
+    const users = await User.find({
+      skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } }
+    })
+      .skip((page - 1) * limit)
+      .limit(parseInt(limit))
+      .select('-password');
 
-    // Find users matching the query
-    const users = await User.find(query).select('-password');
-
-    // Calculate match strength
-    const matchedUsers = users.map(user => {
-      const matchingSkill = user.skills.find(s => s.name.toLowerCase().includes(skill.toLowerCase()));
-      return {
-        user,
-        matchStrength: matchingSkill ? matchingSkill.level : 'N/A'
-      };
+    const totalUsers = await User.countDocuments({
+      skills: { $elemMatch: { name: { $regex: skill, $options: 'i' } } }
     });
 
-    // Sort the results by match strength
-    matchedUsers.sort((a, b) => a.matchStrength.localeCompare(b.matchStrength));
-
-    res.json(matchedUsers);
+    res.json({
+      users,
+      totalPages: Math.ceil(totalUsers / limit),
+      currentPage: parseInt(page),
+    });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
