@@ -175,3 +175,16 @@ Contributions are welcome! To contribute:
 ### Deployment
 - Ensure all environment variables are set in the production environment.
 - Use a service like Heroku, AWS, or DigitalOcean for deployment.
+
+## Deployment Guide
+
+### Steps to Deploy
+1. Ensure all environment variables are set in the `.env` file.
+2. Build the frontend with `npm run build`.
+3. Push the code to your hosting provider.
+4. Monitor the deployment for any issues.
+
+### Hosting Providers
+- Heroku: Run `git push heroku main` to deploy.
+- AWS: Use AWS CLI or Elastic Beanstalk for deployment.
+- DigitalOcean: Use their App Platform or deploy via Docker.
