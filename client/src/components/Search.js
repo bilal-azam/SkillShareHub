@@ -25,14 +25,16 @@ const Search = () => {
   const onProficiencyChange = (e) => setProficiency(e.target.value);
   const onAvailabilityChange = (e) => setAvailability(e.target.value);
 
+  
   const onSearch = async () => {
     try {
-      const res = await axios.get('/api/users/search', {
+      const res = await axios.get(`/api/users/search`, {
         params: {
           skill: query,
           location,
           proficiency,
           availability,
+          page
         },
         headers: { 'x-auth-token': localStorage.getItem('token') }
       });

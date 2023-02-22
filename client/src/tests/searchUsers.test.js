@@ -11,4 +11,10 @@ describe('Search Users', () => {
 
     expect(res.json).toHaveBeenCalledWith(expect.any(Array));
   });
+
+  it('should display results for a valid skill search', async () => {
+    const skill = 'React';
+    const res = await axios.get(`/api/users/search?skill=${skill}`);
+    expect(res.data.users.length).toBeGreaterThan(0);
+  });
 });
