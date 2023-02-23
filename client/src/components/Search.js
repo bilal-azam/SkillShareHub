@@ -25,6 +25,11 @@ const Search = () => {
   const onProficiencyChange = (e) => setProficiency(e.target.value);
   const onAvailabilityChange = (e) => setAvailability(e.target.value);
 
+  useEffect(() => {
+    const searchResults = document.getElementById('search-results');
+    searchResults.style.opacity = 0;
+    setTimeout(() => (searchResults.style.opacity = 1), 300);
+  }, [results]);
   
   const onSearch = async () => {
     try {
